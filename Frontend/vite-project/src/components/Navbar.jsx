@@ -16,7 +16,7 @@ function Navbar({ setnav, nav ,token}) {
         <Link to="/mobileapp" className='nav-mobile'>
           <li className='list-item'>Mobile-app</li>
         </Link>
-        <li className='list-item'>Contact us</li>
+       <Link to="/contact" className='contact'><li className='list-item'>Contact us</li></Link>
       </ul>
       <div className="button">
         <Link to='/cart'>
@@ -40,7 +40,7 @@ function Navbar({ setnav, nav ,token}) {
           <Link to="/" className='nav-home'><li className="side-nav-items">Home</li></Link>
           <Link to="/#menu" className='nav-menu'><li className="side-nav-items">Menu</li></Link>
           <Link to="/mobileapp" className='nav-mobile'><li className="side-nav-items">Mobile-app</li></Link>
-          <li className="side-nav-items">Contact us</li>
+         <Link to="/contact" className='contact'><li className="side-nav-items">Contact us</li></Link> 
           <Link to="/cart" className='nav-cart'><li className="side-nav-items">Cart</li></Link>
         <li className="side-nav-items">
          <Link to="/myorder" className='orderlist'>Your Orders</Link>

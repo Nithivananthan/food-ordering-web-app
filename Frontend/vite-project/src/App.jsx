@@ -17,6 +17,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import MyOrders from "./components/Myorders";
+import Contact from "./components/Contact";
 
 function AppWrapper() {
   const navigate = useNavigate();
@@ -204,6 +205,7 @@ function order() {
             token={token}
           />} />
       <Route path="/myorder" element={<MyOrders user={user}/>}/>
+      <Route path="/contact" element={<Contact/>}/>
       </Routes>
     </>
   );

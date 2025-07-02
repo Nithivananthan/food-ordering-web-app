@@ -1124,3 +1124,73 @@
 .cancel-button:hover {
   background-color: #d32f2f;
 }
+
+.contact-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.contact-heading {
+  text-align: center;
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.contact-subheading {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: orange;
+  outline: none;
+}
+
+.contact-form button {
+  background-color: orange;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #e25500;
+}
+
+.contact-info {
+  margin-top: 30px;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+}
+.contact{
+  text-decoration: none;
+}
