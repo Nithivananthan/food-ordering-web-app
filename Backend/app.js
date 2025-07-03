@@ -10,7 +10,6 @@ require('dotenv').config()
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("Connection error:", err));
-
 const app = express();
 app.use(express.json());
 app.use("/api/categories",CategoriesRoutes);
