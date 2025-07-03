@@ -6,13 +6,11 @@ const foodinforamation=require("./routes/Foodinf")
 const order= require('./routes/Foods/Order')
 const user = require('./routes/authendication')
 require('dotenv').config()
-mongoose
-  .connect("mongodb://localhost/foods", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Successfully connected to MongoDB"))
-  .catch((error) => console.error("MongoDB Connection Error:", error));
+
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log("Connection error:", err));
+
 const app = express();
 app.use(express.json());
 app.use("/api/categories",CategoriesRoutes);
