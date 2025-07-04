@@ -8,7 +8,7 @@ function Home({categories,foodinf,addcart,cart,handeldelete,handelitem}){
   const[search,setsearch]=useState('')
   const[catfilter,setcatfilter]=useState('')
   const location = useLocation();
-
+  
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', ''); 
