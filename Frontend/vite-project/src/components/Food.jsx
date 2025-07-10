@@ -22,8 +22,6 @@ function Food({ foodinf, addcart, cart, handeldelete, index,handelitem}) {
           <FontAwesomeIcon icon={faInfoCircle} />
         </button>
       </div>
-
-      {/* Food Details Modal */}
       {visi && (
         <div className="back">
           <div className="food-d">
