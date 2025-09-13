@@ -64,6 +64,7 @@ function Login({ settoken }) {
   >
     {showPassword ? '🙈' : '👁️'}
   </span>
+  {/* <input type="password" placeholder='password' onChange={(e)=> setpassword(e.target.value)} /> */}
 </div>
         <button type="submit">Login</button>
         <p>Don't have an account? <Link to="/register">Register here</Link></p>

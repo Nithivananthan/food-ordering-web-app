@@ -38,7 +38,7 @@ function MyOrders({ user }) {
               <p>Total: ${order.totalprice}</p>
               <p>Delivery to: {order.address}</p>
               <p>Ordered by: {order.name} ({order.number})</p>
-              <p className="order-status">Status: <span>Out for delivery</span></p>
+              <p className="order-status">Status: <span>{order.status}</span></p>
               <button className="cancel-button" onClick={() => cancelOrder(order._id)}>Cancel Order</button>
             </div>
           </div>

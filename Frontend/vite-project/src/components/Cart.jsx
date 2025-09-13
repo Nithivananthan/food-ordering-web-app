@@ -1,38 +1,31 @@
-import React from 'react';
+import React from "react";
 
-
-function Cart({ cart, handelDelete}) {
+function Cart({ cart, handelDelete,handelitem,foodinf }) {
   return (
-    <div>
-      <table className="carttable" border={1}>
-        <thead className="carthead">
-          <tr>
-            <th>Food</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody className="cartbody">
-          {cart.map((cart,index) =>(
-            <tr key={cart._id}>
-              <td>  
-                <img className="cartimg" src={cart.foodimage} alt={cart.foodname} />
-              </td>
-              <td className="cart-food-name">{cart.foodname}</td>
-              <td className="cart-food-price">{cart.foodprice}</td>
-              <td>
-                <button className="cartdel" onClick={() => handelDelete(index)}>
-                 Delete
-                </button>
-              </td> 
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="cart-container">
+      <h2 className="cart-title">My Cart</h2>
+      {cart.length === 0 ? (
+        <p className="empty-cart">Your cart is empty 🛒</p>
+      ) : (
+        cart.map((item, index) => (
+          <div key={item._id} className="cart-card">
+            <img className="cart-img" src={item.foodimage} alt={item.foodname} />
+            <div className="cart-details">
+              <h3>{item.foodname}</h3>
+              <p className="cart-price">{item.foodprice}</p>
+            </div>
+            <button className="cart-del">Buy</button>
+            <button
+              className="cart-del"
+              onClick={() => handelDelete(index)}
+            >
+              Remove
+            </button>
+          </div>
+        ))
+      )}
     </div>
   );
 }
 
 export default Cart;
-

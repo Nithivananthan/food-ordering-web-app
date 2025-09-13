@@ -9,7 +9,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Cart from "./components/cart";
+import Cart from "./components/Cart"
 import Buyitems from "./components/Buyitems";
 import ThankYouPage from "./components/Thankyoupage";
 import MobileAppPage from "./components/Mobile-app";
@@ -191,7 +191,7 @@ function order() {
             />
           }
         />
-        <Route path="/cart" element={<Cart cart={cart} handelDelete={handeldelete} />} />
+        <Route path="/cart" element={<Cart cart={cart} foodinf={foodinf} handelitem={handelitem} handelDelete={handeldelete} />} />
         <Route path="/buyitem" element={<Buyitems setcustomer={setcustomer} order={order} total={total} />} />
         <Route path="/thankyou" element={<ThankYouPage />} />
         <Route path="/mobileapp" element={<MobileAppPage />} />

@@ -30,7 +30,8 @@ const orderSchema = new mongoose.Schema({
   address: {
     type: String,
     required: true
-  },
+  }, 
+  status: { type: String, default: 'Pending' },
   totalprice: {
     type: Number,
     required: true
@@ -41,7 +42,7 @@ const Order = mongoose.model('Order', orderSchema);
 
 route.post('/', async (req, res) => {
   try {
-    const { foodimage, foodname, foodprice, foodquantity, name, number, address, totalprice,id} = req.body;
+    const { foodimage, foodname, foodprice, foodquantity, name, number, address, totalprice,id,status} = req.body;
 
     const orderData = new Order({
       foodimage,
@@ -52,7 +53,8 @@ route.post('/', async (req, res) => {
       number,
       address,
       totalprice,
-      id
+      id,
+      status
     });
     await orderData.save();
     res.status(201).json({
@@ -72,8 +74,21 @@ route.get('/:id', async (req, res) => {
   try {
     const userId = req.params.id;
 
-    const orderData = await Order.find({ id: userId }); // Notice: { id: userId }
+    const orderData = await Order.find({ id: userId }); 
 
+    res.status(200).json(orderData);
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({
+      message: 'Failed to fetch orders',
+      error: error.message,
+    });
+  }
+});
+route.get('/', async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const orderData = await Order.find(); 
     res.status(200).json(orderData);
   } catch (error) {
     console.error('Error fetching orders:', error);
@@ -96,6 +111,22 @@ route.delete('/:id', async (req, res) => {
       message: 'Failed to cancel order',
       error: error.message,
     });
+  }
+});
+route.put('/:id', async (req, res) => {
+  const { status } = req.body;
+  try {
+    const updatedOrder = await Order.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true } 
+    );
+    if (!updatedOrder) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+    res.json(updatedOrder);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 module.exports = route;

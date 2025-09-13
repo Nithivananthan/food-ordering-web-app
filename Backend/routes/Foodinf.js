@@ -7,14 +7,14 @@ const foodinformationschema = new mongoose.Schema({
     foodimage: { type: String, required: true },
     foodprice: { type: String, required: true },
     fooddescription: { type: String, required: true },
-    foodgenre: { type: String, required: true }
+    foodcategorie: { type: String, required: true }
 });
 const foodinformation = mongoose.model("food", foodinformationschema);
 
 route.post("/", async (req, res) => {
     try {
-        const { foodname, foodimage, foodprice, fooddescription, foodgenre } = req.body;
-        if (!foodname || !foodimage || !foodprice || !fooddescription || !foodgenre) {
+        const { foodname, foodimage, foodprice, fooddescription, foodcategorie } = req.body;
+        if (!foodname || !foodimage || !foodprice || !fooddescription || !foodcategorie) {
             return res.status(400).json({ error: "All fields are required" });
         }
         const food = new foodinformation({
@@ -22,7 +22,7 @@ route.post("/", async (req, res) => {
             foodimage,
             foodprice,
             fooddescription,
-            foodgenre
+            foodcategorie
         });
         await food.save();
         res.status(201).json(food);
@@ -39,19 +39,31 @@ route.get("/", async (req, res) => {
         res.status(500).json({ error: "Failed to fetch food data", message: error.message });
     }
 });
+
+route.get("/:id", async (req, res) => {
+  try {
+    const food = await foodinformation.findById(req.params.id);
+    if (!food) {
+      return res.status(404).json({ message: "Food item not found" });
+    }
+    res.status(200).json(food);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch food data", message: error.message });
+  }
+});
 route.put("/:id", async (req, res) => {
     try {
-        const { foodname, foodimage, foodprice, fooddescription, foodgenre } = req.body;
+        const { foodname, foodimage, foodprice, fooddescription,foodcategorie} = req.body;
         
         const updatedFood = await foodinformation.findByIdAndUpdate(
             req.params.id,
-            { foodname, foodimage, foodprice, fooddescription, foodgenre},
+            { foodname, foodimage, foodprice, fooddescription, foodcategorie},
             { new: true }
         );
         if (!updatedFood) {
             return res.status(404).json({ message: "Food item not found" });
         }
-        res.status(200).json(updatedFood);  // ✅ Correct response
+        res.status(200).json(updatedFood);  
     } catch (error) {
         res.status(500).json({ message: "Server Error", error: error.message });
     }
@@ -60,5 +72,4 @@ route.delete('/:id',async(req,res)=>{
     const deletefood = await foodinformation.findByIdAndDelete(req.params.id)
     res.send(deletefood)
 })
-
 module.exports = route;

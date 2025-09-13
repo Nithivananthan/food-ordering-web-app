@@ -53,7 +53,7 @@ router.get('/me',async(req,res)=>{
    const authHeader= req.headers['authorization']
    const token =authHeader && authHeader.split(' ')[1];
    if(!token){
-    return res.send("token not availabel")
+    return res.send("token not availabel")  
    }
    try{
    const decoder = jwt.verify(token,process.env.JWT_SECRET)
@@ -64,6 +64,14 @@ router.get('/me',async(req,res)=>{
    catch(err){
     res.send("invalidtoken"+err.message)
    }
+})
+router.get('/',async(req,res)=>{
+  try{
+    const users = await usermodel.find()
+    res.send(users)}
+    catch(err){
+      res.send(err.message)
+    }
 })
 module.exports= router
   
